@@ -1,0 +1,21 @@
+#数据库配置
+econtract:
+  datasource:
+    url: jdbc:mysql://192.168.43.222:3306/econtract?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+    username: root
+    password: Sunstar123!
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+
+
+#日志配置
+app:
+  log: logs/            #日志存放的位置
+  level: ERROR           #日志的级别
+  maxHistory: 30        #日志的最大保留时间
+
+logging:
+  config: classpath:log4j-spring.xml
+
+

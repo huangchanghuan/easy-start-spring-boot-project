@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 不分级别同步文件日志输出配置 -->
+<configuration>
+    <!-- 日志地址 -->
+    <springProperty name="logPath" source="app.log" defaultValue="./logs"/>
+    <!-- 日志级别 -->
+    <springProperty name="logLevel" source="app.level" defaultValue="INFO"/>
+    <!-- 最大保存时间 -->
+    <springProperty name="maxHistory" source="app.maxHistory" defaultValue="30"/>
+    <!-- 异步缓冲队列的深度,该值会影响性能.默认值为256 -->
+    <property name="queueSize" value="512"></property>
+
+    <!-- 控制台打印日志的相关配置 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ssSSS} || [%t] || %p || %c[%L] || %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 异常日志的打印存储，同步 -->
+    <appender name="ERROR-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 保存日志文件的路径 -->
+        <file>${logPath}/econtract-error.log</file>
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ssSSS} || [%t] || %p || %c[%L] || %m%n</pattern>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>${logLevel}</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${logPath}/econtract-error-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 最大保存时间-->
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--日常日志的打印存储-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 保存日志文件的路径 -->
+        <file>${logPath}/econtract.log</file>
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ssSSS} || [%t] || %p || %c[%L] || %m%n</pattern>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>${logLevel}</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${logPath}/econtract-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 最大保存时间-->
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+
+    <!--日常分析日志的打印存储-->
+    <appender name="ATHENA-LOG-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 保存日志文件的路径 -->
+        <file>${logPath}/econtract-athena.log</file>
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>%m%n</pattern>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>${logLevel}</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${logPath}/econtract-athena-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 最大保存时间-->
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 系统所有异常日志的打印存储，同步 -->
+    <appender name="ALL-ERROR-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 保存日志文件的路径 -->
+        <file>${logPath}/econtract-all-error.log</file>
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ssSSS} || [%t] || %p || %c[%L] || %m%n</pattern>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>${logLevel}</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${logPath}/econtract-all-error-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 最大保存时间-->
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--配置mybatis sql 日志-->
+    <logger name="com.ljw.dao" level="DEBUG"/>
+
+    <logger name="athena-log" level="info" addtivity="false">
+        <!-- 指定输出的appender -->
+        <appender-ref ref="ATHENA-LOG-FILE"/>
+    </logger>
+
+    <logger name="com.cmic.econtract" level="info" addtivity="false">
+        <!-- 指定输出的appender -->
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="ERROR-FILE" />
+    </logger>
+
+    <root level="debug" addtivity="false">
+        <appender-ref ref="ALL-ERROR-FILE" />
+        <appender-ref ref="STDOUT" />
+<!--        <appender-ref ref="STDOUT" />-->
+    <!--        <appender-ref ref="FILE" />-->
+    </root>
+
+</configuration>

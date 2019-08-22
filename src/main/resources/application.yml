@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    active: @spring.profiles.active@
+server:
+  servlet:
+    context-path: /sim-maap
+  port: 8080

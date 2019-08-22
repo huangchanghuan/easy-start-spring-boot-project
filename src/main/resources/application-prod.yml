@@ -1,0 +1,18 @@
+econtract:
+  datasource:
+    url: jdbc:mysql://10.3.76.201:33061/dzht?serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+    username: simecontract
+    password: 878FOZ8VEBP7
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+
+app:
+  log: /data/logs/econtract           #日志存放的位置
+  level: ERROR            #日志的级别
+  maxHistory: 30        #日志的最大保留时间
+
+logging:
+  config: classpath:log4j-spring.xml
+
+
