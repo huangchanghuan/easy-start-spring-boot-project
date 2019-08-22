@@ -4,7 +4,7 @@ import com.cmic.sim.maap.core.enums.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author haiqiang
+ * @author huangchanghuan
  * @date 2019/2/22 14:03
  */
 @Slf4j

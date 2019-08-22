@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import java.sql.SQLException;
 
 /**
- * @author haiqiang
+ * @author huangchanghuan
  * @date 2019/2/21 15:10
  */
 @Configuration

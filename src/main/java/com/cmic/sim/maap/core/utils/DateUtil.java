@@ -12,7 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @author haiqiang
+ * @author huangchanghuan
  * @date 2019/3/12 15:30
  */
 public class DateUtil {

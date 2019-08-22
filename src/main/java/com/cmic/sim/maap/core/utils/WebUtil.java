@@ -1,7 +1,6 @@
 package com.cmic.sim.maap.core.utils;
 
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -18,7 +17,6 @@ import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -95,18 +93,18 @@ public class WebUtil {
         return result;
     }
 
-    public static String HttpsPostSim(String url, JSONObject object) throws IOException {
-        CloseableHttpClient httpclients = getSSLCloseableHttpClient();
-        HttpPost httpPost = new HttpPost(url);
-        httpPost.setHeader("Content-Type", "application/json");
-        StringEntity entity=new StringEntity(object.toString(),Consts.UTF_8);
-        httpPost.setEntity(entity);
-        CloseableHttpResponse response = httpclients.execute(httpPost);
-        HttpEntity entity1 = response.getEntity();
-        String result = EntityUtils.toString(entity1);
-        response.close();
-        return result;
-    }
+//    public static String HttpsPostSim(String url, JSONObject object) throws IOException {
+//        CloseableHttpClient httpclients = getSSLCloseableHttpClient();
+//        HttpPost httpPost = new HttpPost(url);
+//        httpPost.setHeader("Content-Type", "application/json");
+//        StringEntity entity=new StringEntity(object.toString(),Consts.UTF_8);
+//        httpPost.setEntity(entity);
+//        CloseableHttpResponse response = httpclients.execute(httpPost);
+//        HttpEntity entity1 = response.getEntity();
+//        String result = EntityUtils.toString(entity1);
+//        response.close();
+//        return result;
+//    }
 
 
     /**

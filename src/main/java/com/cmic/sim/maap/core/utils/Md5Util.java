@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * @author haiqiang
+ * @author huangchanghuan
  * @date 2019/2/27 18:45
  * 功能描述：将文件转化为hash码
  */
