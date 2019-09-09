@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.cmic</groupId>
-    <artifactId>sim-maap</artifactId>
+    <groupId>com.sunstar</groupId>
+    <artifactId>pdf</artifactId>
     <version>0.0.1</version>
-    <name>sim-maap</name>
+    <name>provider-pdf</name>
 
     <packaging>war</packaging>
     <description>Demo project for Spring Boot</description>
@@ -136,7 +136,7 @@
     </profiles>
 
     <build>
-        <finalName>sim-maap</finalName>
+        <finalName>provider-pdf</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -179,9 +179,9 @@
 <!--                            <goal>push</goal>-->
                         </goals>
                         <configuration>
-                            <repository>10.153.99.33:8088/tyrz/sim-maap</repository>
+                            <repository>10.153.99.33:8088/test/provider-pdf</repository>
                             <username>admin</username>
-                            <password>Harbor12345</password>
+                            <password>admin</password>
                             <tag>${project.version}</tag>
                         </configuration>
                     </execution>
